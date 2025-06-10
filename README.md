@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
+
+# Authentication Dashboard
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/cbddb2d9-8371-4cc4-b7fb-6d5c34b3a4f0
+A modern authentication and user management dashboard built with React, TypeScript, and Tailwind CSS.
 
-## How can I edit this code?
+## Tech Stack
 
-There are several ways of editing your application.
+This project is built with:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Lucide React (for icons)
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cbddb2d9-8371-4cc4-b7fb-6d5c34b3a4f0) and start prompting.
+- **Authentication Flow**: Complete signup, login, and logout functionality
+- **Protected Routes**: Dashboard access only for authenticated users
+- **User Profile Management**: Update email and password
+- **Agent Configuration**: Interdependent dropdowns for provider, model, and language selection
+- **Dark Mode**: Toggle between light and dark themes
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI**: Smooth animations and interactive elements
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or higher)
+- npm or yarn
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone the repository
+```bash
+git clone <your-repository-url>
+cd <your-project-name>
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies
+```bash
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # Reusable UI components
+├── contexts/           # React contexts (Auth, Theme)
+├── pages/              # Page components
+├── hooks/              # Custom hooks
+└── lib/                # Utility functions
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Available Scripts
 
-## What technologies are used for this project?
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-This project is built with:
+## Authentication
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The app uses localStorage to persist user authentication state and data. In a production environment, you would want to integrate with a proper backend authentication service.
 
-## How can I deploy this project?
+## Data Storage
 
-Simply open [Lovable](https://lovable.dev/projects/cbddb2d9-8371-4cc4-b7fb-6d5c34b3a4f0) and click on Share -> Publish.
+Currently uses localStorage for data persistence. The app includes:
+- User registration data
+- Authentication state
+- Agent configuration preferences
+- Theme preferences
 
-## Can I connect a custom domain to my Lovable project?
+## Contributing
 
-Yes, you can!
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the MIT License.
