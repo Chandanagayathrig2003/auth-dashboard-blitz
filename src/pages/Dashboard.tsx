@@ -1,150 +1,167 @@
 
-import { useState } from 'react';
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { User, Settings, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { User, Settings, Moon, Sun, LogOut, Menu, X, Sparkles } from 'lucide-react';
+import { useState } from 'react';
 
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { logout, user } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
-  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const navigation = [
+    { name: 'Profile', href: '/dashboard/profile', icon: User },
+    { name: 'Agent', href: '/dashboard/agent', icon: Settings },
+  ];
 
   const handleLogout = () => {
     logout();
-    navigate('/');
   };
 
-  const sidebarItems = [
-    {
-      label: 'Profile',
-      path: '/dashboard/profile',
-      icon: User
-    },
-    {
-      label: 'Agent',
-      path: '/dashboard/agent',
-      icon: Settings
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-background flex">
-      {/* Mobile Overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
 
-      {/* Sidebar */}
-      <div className={cn(
-        "fixed lg:static inset-y-0 left-0 z-50 w-64 bg-card border-r transform transition-transform duration-300 ease-in-out lg:translate-x-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="p-6 border-b">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-primary">AuthDash</h2>
+      <div className="flex relative z-10">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
+        {/* Sidebar */}
+        <div className={`
+          fixed lg:static inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        `}>
+          <div className="flex h-full flex-col bg-gradient-to-b from-card/95 to-card/90 backdrop-blur-xl border-r border-border/50 shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-border/50">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                  <Sparkles className="h-6 w-6 text-primary animate-pulse" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                    AuthDash
+                  </h1>
+                  <p className="text-sm text-muted-foreground">Dashboard</p>
+                </div>
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden"
+                className="lg:hidden hover:scale-110 transition-all duration-300"
                 onClick={() => setSidebarOpen(false)}
               >
                 <X className="h-5 w-5" />
               </Button>
             </div>
-          </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-4">
-            <div className="space-y-2">
-              {sidebarItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setSidebarOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors hover:bg-accent",
-                    location.pathname === item.path 
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90" 
-                      : "text-foreground"
-                  )}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
-
-          {/* User Info & Controls */}
-          <div className="p-4 border-t space-y-4">
-            <div className="flex items-center gap-3 px-4 py-2">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-sm font-semibold text-primary-foreground">
-                  {user?.username?.[0]?.toUpperCase() || 'U'}
-                </span>
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium">{user?.username}</p>
-                <p className="text-xs text-muted-foreground">{user?.email}</p>
+            {/* User info */}
+            <div className="p-6 border-b border-border/50">
+              <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-xl border border-primary/20">
+                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                  <User className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{user?.username}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                </div>
               </div>
             </div>
-            
-            <div className="flex gap-2">
+
+            {/* Navigation */}
+            <nav className="flex-1 p-6 space-y-2">
+              {navigation.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`
+                      flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group
+                      ${isActive 
+                        ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-[1.02]' 
+                        : 'hover:bg-accent hover:scale-105 text-muted-foreground hover:text-foreground'
+                      }
+                    `}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <item.icon className={`h-5 w-5 transition-all duration-300 ${
+                      isActive ? 'scale-110' : 'group-hover:scale-110'
+                    }`} />
+                    <span className="font-medium">{item.name}</span>
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 bg-primary-foreground rounded-full animate-pulse" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-border/50 space-y-3">
               <Button
                 variant="ghost"
-                size="icon"
                 onClick={toggleTheme}
-                className="rounded-full"
+                className="w-full justify-start gap-3 hover:scale-105 transition-all duration-300"
               >
-                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                {isDark ? 
+                  <Sun className="h-5 w-5" /> : 
+                  <Moon className="h-5 w-5" />
+                }
+                {isDark ? 'Light Mode' : 'Dark Mode'}
               </Button>
               <Button
-                variant="ghost"
-                size="icon"
+                variant="outline"
                 onClick={handleLogout}
-                className="rounded-full text-destructive hover:text-destructive"
+                className="w-full justify-start gap-3 hover:scale-105 transition-all duration-300 border-destructive/20 text-destructive hover:bg-destructive hover:text-destructive-foreground"
               >
-                <LogOut className="h-4 w-4" />
+                <LogOut className="h-5 w-5" />
+                Sign Out
               </Button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-0">
-        {/* Top Bar */}
-        <header className="bg-card border-b p-4 lg:p-6">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-            <h1 className="text-2xl font-bold">
-              {location.pathname === '/dashboard/profile' && 'Profile Settings'}
-              {location.pathname === '/dashboard/agent' && 'Agent Configuration'}
-            </h1>
+        {/* Main content */}
+        <div className="flex-1 lg:pl-0">
+          {/* Mobile header */}
+          <div className="lg:hidden bg-card/95 backdrop-blur-xl border-b border-border/50 p-4 sticky top-0 z-30">
+            <div className="flex items-center justify-between">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSidebarOpen(true)}
+                className="hover:scale-110 transition-all duration-300"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+                <span className="font-bold text-lg">AuthDash</span>
+              </div>
+              <div className="w-10" /> {/* Spacer */}
+            </div>
           </div>
-        </header>
 
-        {/* Page Content */}
-        <main className="flex-1 p-4 lg:p-6">
-          <Outlet />
-        </main>
+          {/* Page content */}
+          <main className="p-6 lg:p-8">
+            <div className="max-w-6xl mx-auto">
+              <Outlet />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );
