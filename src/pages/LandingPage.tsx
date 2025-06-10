@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Shield, Zap, Users, Moon, Sun, ArrowRight, Sparkles } from 'lucide-react';
+import { Shield, Zap, Users, Moon, Sun, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -39,7 +39,9 @@ const LandingPage = () => {
       <nav className="relative z-10 container mx-auto px-6 py-6">
         <div className="flex justify-between items-center backdrop-blur-sm bg-background/80 rounded-2xl px-6 py-3 border border-border/50 shadow-lg">
           <div className="text-2xl font-bold text-primary flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary animate-pulse" />
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <div className="w-4 h-4 bg-background rounded-sm"></div>
+            </div>
             AuthDash
           </div>
           <div className="flex items-center gap-4">
@@ -68,7 +70,7 @@ const LandingPage = () => {
       <main className="relative z-10 container mx-auto px-6 py-16">
         <div className="text-center max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full text-sm text-primary mb-8 animate-fade-in border border-primary/20">
-            <Sparkles className="h-4 w-4" />
+            <Shield className="h-4 w-4" />
             <span>Next Generation Authentication Platform</span>
           </div>
           
@@ -124,7 +126,7 @@ const LandingPage = () => {
           <Card className="max-w-3xl mx-auto border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-background to-secondary/10 backdrop-blur-sm hover:scale-105 transition-all duration-500 shadow-2xl">
             <CardContent className="p-12">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/20 rounded-2xl mb-6">
-                <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+                <Shield className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Ready to Transform Your Workflow?

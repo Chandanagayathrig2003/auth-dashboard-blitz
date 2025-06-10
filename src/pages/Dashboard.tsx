@@ -3,7 +3,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { User, Settings, Moon, Sun, LogOut, Menu, X, Sparkles } from 'lucide-react';
+import { User, Settings, Moon, Sun, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 const Dashboard = () => {
@@ -48,7 +48,9 @@ const Dashboard = () => {
             <div className="flex items-center justify-between p-6 border-b border-border/50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
-                  <Sparkles className="h-6 w-6 text-primary animate-pulse" />
+                  <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
+                    <div className="w-3 h-3 bg-background rounded-sm"></div>
+                  </div>
                 </div>
                 <div>
                   <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
@@ -148,7 +150,9 @@ const Dashboard = () => {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+                <div className="w-5 h-5 bg-primary rounded flex items-center justify-center">
+                  <div className="w-2 h-2 bg-background rounded-sm"></div>
+                </div>
                 <span className="font-bold text-lg">AuthDash</span>
               </div>
               <div className="w-10" /> {/* Spacer */}
