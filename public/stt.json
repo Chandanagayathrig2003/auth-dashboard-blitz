@@ -1,0 +1,71 @@
+
+{
+  "providers": [
+    {
+      "id": "deepgram",
+      "name": "Deepgram",
+      "models": [
+        {
+          "id": "nova-2",
+          "name": "Nova-2",
+          "languages": [
+            { "id": "en-US", "name": "English-US" },
+            { "id": "en-GB", "name": "English-UK" },
+            { "id": "es-ES", "name": "Spanish-Spain" },
+            { "id": "fr-FR", "name": "French-France" }
+          ]
+        },
+        {
+          "id": "whisper",
+          "name": "Whisper",
+          "languages": [
+            { "id": "en-US", "name": "English-US" },
+            { "id": "es-ES", "name": "Spanish-Spain" },
+            { "id": "de-DE", "name": "German-Germany" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "models": [
+        {
+          "id": "whisper-1",
+          "name": "Whisper-1",
+          "languages": [
+            { "id": "en-US", "name": "English-US" },
+            { "id": "en-GB", "name": "English-UK" },
+            { "id": "es-ES", "name": "Spanish-Spain" },
+            { "id": "fr-FR", "name": "French-France" },
+            { "id": "de-DE", "name": "German-Germany" },
+            { "id": "it-IT", "name": "Italian-Italy" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemblyai",
+      "name": "AssemblyAI",
+      "models": [
+        {
+          "id": "best",
+          "name": "Best",
+          "languages": [
+            { "id": "en-US", "name": "English-US" },
+            { "id": "en-GB", "name": "English-UK" },
+            { "id": "es-ES", "name": "Spanish-Spain" }
+          ]
+        },
+        {
+          "id": "nano",
+          "name": "Nano",
+          "languages": [
+            { "id": "en-US", "name": "English-US" },
+            { "id": "es-ES", "name": "Spanish-Spain" }
+          ]
+        }
+      ]
+    }
+  ]
+}
